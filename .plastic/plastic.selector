@@ -1,4 +1,0 @@
-repository "StellarHarvest/StellarHarvest@10170877965321@cloud"
-  path "/"
-    br "/main"
-    co "/main"
