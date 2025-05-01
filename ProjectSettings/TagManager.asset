@@ -12,9 +12,9 @@ TagManager:
   - Terrain
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Ground
+  - Player
+  - AirPlatform
   - 
   - 
   - 
