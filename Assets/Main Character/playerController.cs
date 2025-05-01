@@ -5,20 +5,20 @@ using UnityEngine.Rendering;
 
 public class playerController : MonoBehaviour
 {
-    public float maxRunSpeed = 2f;
-    public float maxAirSpeed = 1f;
-    public float groundAccel = 5f;
-    public float airAccel = 1f;
+    private float runSpeed = 6f;
+    private float maxRunSpeed = 8f;
+    private float maxAirSpeed = 5f;
+    private float airAccel = 25f;
     private Rigidbody2D rb2d;
     private BoxCollider2D bc2d;
-    public float speed = 10f;
     private float movement;
     private float jump;
 
     public bool IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(0, bc2d.size.y / 2 * 10.1f, 0), Vector2.down, 0.01f);
-        return hit.collider != null;
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position + new Vector3(bc2d.size.x / 2 * transform.localScale.x, -bc2d.size.y / 1.99f * transform.localScale.y, 0), Vector2.down, 0.02f);
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + new Vector3(-bc2d.size.x / 2 * transform.localScale.x, -bc2d.size.y / 1.99f * transform.localScale.y, 0), Vector2.down, 0.02f);
+        return hit1.collider != null || hit2.collider != null;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,7 +33,8 @@ public class playerController : MonoBehaviour
     void Update()
     {
         movement = Input.GetAxis("Horizontal");
-        Debug.DrawRay(transform.position - new Vector3(0, bc2d.size.y / 2 * 10.1f, 0), Vector2.down, Color.purple, 0.01f);
+        Debug.DrawRay(transform.position + new Vector3(bc2d.size.x / 2 * transform.localScale.x, -bc2d.size.y / 1.99f * transform.localScale.y, 0), Vector2.down * 0.02f, Color.purple, 0.01f);
+        Debug.DrawRay(transform.position + new Vector3(-bc2d.size.x / 2 * transform.localScale.x, -bc2d.size.y / 1.99f * transform.localScale.y, 0), Vector2.down * 0.02f, Color.purple, 0.01f);
         jump = Input.GetAxis("Vertical");
 
         if (Input.GetAxis("Horizontal") != 0)
@@ -41,13 +42,11 @@ public class playerController : MonoBehaviour
             if (IsGrounded())
             {
                 if (Mathf.Abs(rb2d.linearVelocityX) < maxRunSpeed)
-                    rb2d.linearVelocityX += movement * groundAccel * Time.deltaTime;
-                else
-                    rb2d.linearVelocityX /= 1.01f;
+                    rb2d.linearVelocityX = movement * runSpeed;
             }
             else
             {
-                if (Mathf.Abs(rb2d.linearVelocityX) < maxAirSpeed)
+                if (Mathf.Abs(rb2d.linearVelocityX) < maxAirSpeed || rb2d.linearVelocityX * movement < 0)
                     rb2d.linearVelocityX += movement * airAccel * Time.deltaTime;
             }
         }
