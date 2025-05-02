@@ -8,7 +8,7 @@ public class playerController : MonoBehaviour
     private float runSpeed = 6f;
     private float maxRunSpeed = 8f;
     private float maxAirSpeed = 5f;
-    private float airAccel = 25f;
+    private float airAccel = 50f;
     private Rigidbody2D rb2d;
     private BoxCollider2D bc2d;
     private float movement;

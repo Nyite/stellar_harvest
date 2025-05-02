@@ -796,10 +796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5d282be3d434247b0e69c47249860f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 4
-  maxRunSpeed: 6
-  maxAirSpeed: 2
-  airAccel: 5
 --- !u!1 &781584694
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,6 +807,7 @@ GameObject:
   - component: {fileID: 781584697}
   - component: {fileID: 781584696}
   - component: {fileID: 781584695}
+  - component: {fileID: 781584698}
   m_Layer: 3
   m_Name: FloorTile (2)
   m_TagString: Terrain
@@ -928,12 +925,31 @@ Transform:
   m_GameObject: {fileID: 781584694}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.03, y: -4.77, z: 0}
-  m_LocalScale: {x: 8.591518, y: 1.6770645, z: 1}
+  m_LocalPosition: {x: -4.03, y: -5.8516, z: 0}
+  m_LocalScale: {x: 8.591518, y: 3.84031, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &781584698
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781584694}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 1
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
