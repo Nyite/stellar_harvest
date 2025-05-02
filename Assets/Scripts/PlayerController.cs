@@ -42,12 +42,6 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
         }
-
-        // Drop through pass-through platforms
-        // if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && isGrounded)
-        // {
-        //     StartCoroutine(DisableGroundCheck());
-        // }
     }
 
     void Jump()
