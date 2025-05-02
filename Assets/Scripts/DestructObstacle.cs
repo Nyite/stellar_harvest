@@ -4,40 +4,35 @@ public class DestructObstacle : MonoBehaviour
 {
     [Header("Settings")]
     public KeyCode interactionKey = KeyCode.E;
-    public string requiredTool = "Sickle"; // Tool name (matches inventory)
+    public string requiredTool = "Sickle";
+    public float speedMultiplier = 0.6f; // 50% speed
+    public float jumpMultiplier = 0.6f;  // 50% jump height
 
     [Header("Effects")]
     public GameObject destructionEffect;
 
     private bool playerInRange;
     private PlayerInventory playerInventory;
+    private PlayerController playerController;
 
     void Update()
     {
-        if (playerInRange && Input.GetKeyDown(interactionKey))
+        if (playerInRange && Input.GetKeyDown(interactionKey) && playerInventory.hasSickle)
         {
-            TryDestroyObstacle();
+            DestroyObstacle();
         }
-    }
-
-    void TryDestroyObstacle()
-    {
-        // Check if player has the required tool
-        if (playerInventory != null && playerInventory.hasSickle) { 
-            DestroyObstacle(); 
-        }
-        else { 
-            Debug.Log("You can't get through this growth, and you can't remove it with your bare hands.");
+        else
+        {
+            Debug.Log("I cant cut grass.");
         }
     }
 
     void DestroyObstacle()
     {
-        // Play destruction effect
         if (destructionEffect != null)
             Instantiate(destructionEffect, transform.position, Quaternion.identity);
 
-        Destroy(gameObject); // Remove obstacle
+        Destroy(gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -46,6 +41,8 @@ public class DestructObstacle : MonoBehaviour
         {
             playerInRange = true;
             playerInventory = other.GetComponent<PlayerInventory>();
+            playerController = other.GetComponent<PlayerController>();
+            playerController.ApplySlow(speedMultiplier, jumpMultiplier);
         }
     }
 
@@ -55,6 +52,8 @@ public class DestructObstacle : MonoBehaviour
         {
             playerInRange = false;
             playerInventory = null;
+            playerController.RemoveSlow(speedMultiplier, jumpMultiplier);
+            playerController = null;
         }
     }
 }
