@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform groundCheck; // Assign an empty GameObject at the player's feet
     [SerializeField] LayerMask groundLayer; // Assign the "Ground" layer in the Inspector
     [SerializeField] float groundCheckRadius = 0.2f; // Size of the overlap circle
+    public int _mushroomLayer = 9;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -32,8 +33,8 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(moveInput * currentMoveSpeed, rb.linearVelocity.y);
 
         // Jumping
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
+        LayerMask combinedMask = groundLayer | (1 << _mushroomLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, combinedMask);
         if (Input.GetKeyDown(KeyCode.Space)) // Jump input
         {
             if (isGrounded && canJump)
