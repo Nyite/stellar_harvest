@@ -12,12 +12,12 @@ TagManager:
   - Terrain
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Player
+  - AirPlatform
+  - TerrainTools
+  - PlantArea
+  - Mushroom
   - 
   - 
   - 
