@@ -8,6 +8,7 @@ public class RegularMushroomCtrl : MonoBehaviour
 
     [Header("Effects")]
     public GameObject destructionEffect;
+    public GameObject creationEffect;
 
     private bool playerInRange;
     private PlayerInventory playerInventory;

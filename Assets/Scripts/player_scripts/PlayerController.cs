@@ -56,14 +56,6 @@ public class PlayerController : MonoBehaviour
         // OR for physics-based jump:
         // rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
-
-    // Visualize ground check (debug)
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-    }
-
     // Grass influence on speed process function
     public void ApplySlow(float speedMultiplier, float jumpMultiplier)
     {
