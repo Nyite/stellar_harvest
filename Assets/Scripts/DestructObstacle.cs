@@ -21,10 +21,6 @@ public class DestructObstacle : MonoBehaviour
         {
             DestroyObstacle();
         }
-        else
-        {
-            Debug.Log("I cant cut grass.");
-        }
     }
 
     void DestroyObstacle()
